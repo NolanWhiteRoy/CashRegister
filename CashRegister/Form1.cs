@@ -13,25 +13,26 @@ using System.Windows.Forms;
 /// Created by: Nolan White-Roy 
 /// Date Completed: 2018-10-15
 /// Summary: A basic Tim Hortons cash register capable of all requirements listed on the ICS3U assignment post. 
-/// Possible additions: Acurate time and date; Order number that goes up by 1 everytime a new order is placed; tryCatch_Label disapears after number is inputed.
 
 namespace CashRegister
 {
     public partial class Form1 : Form
     {
-        //Declare all variables globally 
+        //Declare all variables globally
         const double TAXES_COST = 0.13;
         const double COFFEE_COST = 1.59;
         const double DOUGHNUT_COST = 0.99;
         const double HOCKEYCARD_COST = 1.99;
-        double doughnutsPurchased;
-        double coffeesPurchased;
-        double hockeycardsPurchased;
-        double totalCost;
-        double taxTotal;
-        double subTotal;
-        double ammountTendered;
-        double changeGiven;
+        //Set variables to 0
+        double doughnutsPurchased = 0;
+        double coffeesPurchased = 0;
+        double hockeycardsPurchased = 0;
+        double totalCost = 0;
+        double taxTotal = 0;
+        double subTotal = 0;
+        double ammountTendered = 0;
+        double changeGiven = 0;
+        int orderNum = 1;
 
         //Declare all graphics
         Graphics g;
@@ -118,11 +119,9 @@ namespace CashRegister
             //Create receipt with delay in timing for printing effect
             g.DrawRectangle(blackPen, 225, 60, 230, 310);
             Thread.Sleep(500);
-            g.DrawString("TIM HORTONS Inc.", titleFont, blackBrush, 245, 70);
+            g.DrawString("TIM HORTONS Inc. " , titleFont, blackBrush, 245, 70);
             Thread.Sleep(300);
-            g.DrawString("October 17, 2018", normalFont, blackBrush, 285, 95);
-            Thread.Sleep(300);
-            g.DrawString("16:48", normalFont, blackBrush, 320, 110);
+            g.DrawString( DateTime.Now.ToString(), normalFont, blackBrush, 270, 110);
             Thread.Sleep(300);
             g.DrawString("Coffees x" + coffeeBox.Text + " @ 1.59" , normalFont, blackBrush, 230, 140);
             Thread.Sleep(300);
@@ -145,7 +144,7 @@ namespace CashRegister
             Thread.Sleep(300);
             g.DrawString("Change " + changeGiven.ToString("C"), normalFont, blackBrush, 230, 260);
             Thread.Sleep(300);
-            g.DrawString("Order #468", titleFont, blackBrush, 285, 290);
+            g.DrawString("Order Number " + orderNum++ , titleFont, blackBrush, 265, 290);
             Thread.Sleep(300);
             g.DrawString("Tim Hortons, Always Fresh", normalFont, blackBrush, 265, 330);
             Thread.Sleep(300);
