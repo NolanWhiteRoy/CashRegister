@@ -71,9 +71,9 @@ namespace CashRegister
                 taxTotal = subTotal * TAXES_COST;
 
                 //Totals are inputed into the labels
-                taxTotal_Label.Text = "Taxes: " + taxTotal.ToString("C");
-                subTotal_Label.Text = "Sub Total: " + subTotal.ToString("C");
-                totalCost_Label.Text = "Total Cost: " + totalCost.ToString("C");
+                taxTotal_Label.Text = "Taxes:                                  " + taxTotal.ToString("C");
+                subTotal_Label.Text = "Sub Total:                             " + subTotal.ToString("C");
+                totalCost_Label.Text = "Total Cost:                            " + totalCost.ToString("C");
             }
             catch
             {
@@ -94,7 +94,7 @@ namespace CashRegister
                 changeGiven = ammountTendered - totalCost;
 
                 //Amount of change is displayed in the label
-                changeGiven_Label.Text = "Change: " + changeGiven.ToString("C");
+                changeGiven_Label.Text = "Change:                              " + changeGiven.ToString("C");
             }
             
             catch
@@ -107,6 +107,19 @@ namespace CashRegister
 
         private void printReceipt_Button_Click(object sender, EventArgs e)
         {
+            //Cannot Print receipt multiple times (would not be a problem but with different order # and time included it causes the receipts to look different)
+            printReceipt_Button.Enabled = false;
+
+            //Cannot click other buttons again. Although unnecessary because text box values cannot be changed, it gives a visual queue to the user.
+            calculateChange_Button.Enabled = false;
+            calculateTotal_Button.Enabled = false;
+
+            // Text box values cannot be changed
+            tenderedBox.ReadOnly = true;
+            coffeeBox.ReadOnly = true;
+            doughnutBox.ReadOnly = true;
+            hockeycardBox.ReadOnly = true;
+
             //Logo is not visible
             timHortonsLogo_Label.Visible = false;
            
@@ -123,16 +136,16 @@ namespace CashRegister
             Thread.Sleep(300);
             g.DrawString( DateTime.Now.ToString(), normalFont, blackBrush, 270, 110);
             Thread.Sleep(300);
-            g.DrawString("Coffees x" + coffeeBox.Text + " @ 1.59" , normalFont, blackBrush, 230, 140);
+            g.DrawString("Coffees x " + coffeeBox.Text + " @ 1.59" , normalFont, blackBrush, 230, 140);
             Thread.Sleep(300);
 
             //Printer sound replays
             printerPlayer.Play();
 
             //Receipt continues printing 
-            g.DrawString("Doughnuts x" + doughnutBox.Text + " @ .99 ", normalFont, blackBrush, 230, 155);
+            g.DrawString("Doughnuts x " + doughnutBox.Text + " @ .99 ", normalFont, blackBrush, 230, 155);
             Thread.Sleep(300);
-            g.DrawString("Hockey Cards x" + hockeycardBox.Text + " @ 1.99", normalFont, blackBrush, 230, 170);
+            g.DrawString("Hockey Cards x " + hockeycardBox.Text + " @ 1.99", normalFont, blackBrush, 230, 170);
             Thread.Sleep(300);
             g.DrawString("SubTotal: " + subTotal.ToString("C"), normalFont, blackBrush, 230, 200);
             Thread.Sleep(300);
@@ -148,17 +161,24 @@ namespace CashRegister
             Thread.Sleep(300);
             g.DrawString("Tim Hortons, Always Fresh", normalFont, blackBrush, 265, 330);
             Thread.Sleep(300);
+
+            //New order button is visble 
             newOrder_Button.Visible = true;
         }
 
         private void newOrder_Button_Click(object sender, EventArgs e)
-        {
+        { 
             //Old receipt is covered 
             g.FillRectangle(whiteBrush, 220, 55, 240, 320);
            
             //New order button is not visible 
             newOrder_Button.Visible = false;
-            
+        
+            //All buttons are enabled again
+            printReceipt_Button.Enabled = true;
+            calculateChange_Button.Enabled = true;
+            calculateTotal_Button.Enabled = true;
+
             //Reset all lables and text boxes 
             coffeeBox.Text = "";
             doughnutBox.Text = "";
@@ -178,6 +198,12 @@ namespace CashRegister
             subTotal = 0;
             ammountTendered = 0;
             changeGiven = 0;
+
+            // Text box values can be changed again
+            tenderedBox.ReadOnly = false;
+            coffeeBox.ReadOnly = false;
+            doughnutBox.ReadOnly = false;
+            hockeycardBox.ReadOnly = false;
         }
     }
 }
