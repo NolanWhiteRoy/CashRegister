@@ -50,6 +50,7 @@
             this.tryCatch_Label = new System.Windows.Forms.Label();
             this.newOrder_Button = new System.Windows.Forms.Button();
             this.timHortonsLogo_Label = new System.Windows.Forms.Label();
+            this.changeError_Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // numberCoffees_Label
@@ -234,12 +235,22 @@
             this.timHortonsLogo_Label.Size = new System.Drawing.Size(243, 243);
             this.timHortonsLogo_Label.TabIndex = 22;
             // 
+            // changeError_Label
+            // 
+            this.changeError_Label.AutoSize = true;
+            this.changeError_Label.Location = new System.Drawing.Point(245, 341);
+            this.changeError_Label.Name = "changeError_Label";
+            this.changeError_Label.Size = new System.Drawing.Size(199, 13);
+            this.changeError_Label.TabIndex = 23;
+            this.changeError_Label.Text = "Must be equal to or more than Total Cost";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(487, 413);
+            this.Controls.Add(this.changeError_Label);
             this.Controls.Add(this.timHortonsLogo_Label);
             this.Controls.Add(this.newOrder_Button);
             this.Controls.Add(this.tryCatch_Label);
@@ -291,6 +302,7 @@
         private System.Windows.Forms.Label tryCatch_Label;
         private System.Windows.Forms.Button newOrder_Button;
         private System.Windows.Forms.Label timHortonsLogo_Label;
+        private System.Windows.Forms.Label changeError_Label;
     }
 }
 
