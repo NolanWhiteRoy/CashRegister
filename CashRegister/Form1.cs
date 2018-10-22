@@ -10,9 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/// Created by: Nolan White-Roy 
+/// Created by: Nolan White-Roy
 /// Date Completed: 2018-10-15
-/// Summary: A basic Tim Hortons cash register capable of all requirements listed on the ICS3U assignment post. 
+/// Summary: A basic Tim Hortons cash register capable of all requirements listed on the ICS3U assignment post!
 
 namespace CashRegister
 {
