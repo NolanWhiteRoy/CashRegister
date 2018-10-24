@@ -219,7 +219,7 @@
             // 
             // newOrder_Button
             // 
-            this.newOrder_Button.Location = new System.Drawing.Point(259, 377);
+            this.newOrder_Button.Location = new System.Drawing.Point(259, 378);
             this.newOrder_Button.Name = "newOrder_Button";
             this.newOrder_Button.Size = new System.Drawing.Size(176, 23);
             this.newOrder_Button.TabIndex = 21;
